@@ -28,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         let raw = ''; try { raw = await resp.text() } catch {}
         let text = ''; try { const data = JSON.parse(raw); text = data?.choices?.[0]?.message?.content || '' } catch {}
         let tips: string[] = []
-        if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>String(x)) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
+        if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>typeof x === 'string' ? x : Object.values(x||{}).map(v=>String(v)).join(' ')) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
         console.log('[ai/suggestions]', { provider: which, status, length: raw.length })
         return { tips, status }
       }
@@ -42,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           let raw = ''; try { raw = await resp.text() } catch {}
           let text = ''; try { const data = JSON.parse(raw); text = data?.choices?.[0]?.message?.content || '' } catch {}
           let tips: string[] = []
-          if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>String(x)) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
+          if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>typeof x === 'string' ? x : Object.values(x||{}).map(v=>String(v)).join(' ')) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
           console.log('[ai/suggestions]', { provider: which, status, length: raw.length, endpoint: ep, model: m })
           if (status === 200 && tips.length) return { tips, status }
         }
@@ -56,7 +56,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           let raw = ''; try { raw = await resp.text() } catch {}
           let text = ''; try { const data = JSON.parse(raw); text = data?.output?.choices?.[0]?.message?.content || data?.choices?.[0]?.message?.content || '' } catch {}
           let tips: string[] = []
-          if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>String(x)) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
+          if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>typeof x === 'string' ? x : Object.values(x||{}).map(v=>String(v)).join(' ')) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
           console.log('[ai/suggestions:native]', { provider: which, status, length: raw.length, endpoint: ep, model: m })
           if (status === 200 && tips.length) return { tips, status }
         }
