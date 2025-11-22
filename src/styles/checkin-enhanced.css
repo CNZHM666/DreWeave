@@ -1,0 +1,208 @@
+/* 签到页面字体渐变效果增强 */
+
+/* 主要标题渐变 */
+.gradient-text-primary {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.gradient-text-secondary {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.gradient-text-success {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 50%, #6ee7b7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.gradient-text-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 动画效果 */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 文字阴影增强 */
+.text-shadow-strong {
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.text-shadow-medium {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.text-shadow-light {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* 按钮文字渐变 */
+.button-text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+/* 离线模式特殊样式 */
+.offline-text-gradient {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 50%, #fb923c 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+/* 网络状态指示器 */
+.network-status-online {
+  background: linear-gradient(135deg, #86efac 0%, #4ade80 50%, #22c55e 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.network-status-offline {
+  background: linear-gradient(135deg, #fca5a5 0%, #f87171 50%, #ef4444 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 高对比度文字 */
+.high-contrast-text {
+  color: #1e293b !important;
+  text-shadow: 
+    0 1px 2px rgba(255, 255, 255, 0.8),
+    0 2px 4px rgba(255, 255, 255, 0.6),
+    0 0 8px rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+.high-contrast-text-light {
+  color: #334155 !important;
+  text-shadow: 
+    0 1px 2px rgba(255, 255, 255, 0.6),
+    0 0 6px rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+}
+
+/* 玻璃拟态文字增强 */
+.glass-text {
+  color: #f8fafc !important;
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/* 签到数字特殊效果 */
+.checkin-number {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(251, 191, 36, 0.4);
+  font-weight: 700;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .gradient-text-primary {
+    font-size: 2rem;
+  }
+  
+  .gradient-text-secondary {
+    font-size: 1.1rem;
+  }
+}
+
+/* 动画延迟 */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+/* 脉冲动画 */
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(255, 255, 255, 0.8),
+      0 0 10px rgba(255, 255, 255, 0.6),
+      0 0 15px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 1),
+      0 0 20px rgba(255, 255, 255, 0.8),
+      0 0 30px rgba(255, 255, 255, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* 桌面端体验增强 */
+@media (min-width: 1280px) {
+  :root {
+    font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    --primary-green: #4CAF50;
+    --assist-green: #8BC34A;
+  }
+  .hover-target-lg {
+    padding: 12px;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hover-target-lg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+}
+
+.transition-gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.btn-primary-desktop {
+  background: var(--primary-green);
+  color: #fff;
+}
+
+.btn-primary-desktop:hover { background: #43A047; }
+.btn-primary-desktop:active { background: #388E3C; }

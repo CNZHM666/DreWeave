@@ -1,0 +1,570 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 治愈系基础样式 */
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Noto Sans SC", "Source Han Sans SC", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* 治愈系配色变量 */
+  --healing-mint: #B8E6D1;
+  --healing-lavender: #E6E6FA;
+  --healing-sky: #87CEEB;
+  --healing-peach: #FFDAB9;
+  --healing-cream: #FFF8DC;
+  --healing-rose: #FFE4E1;
+  --healing-sage: #9CAF88;
+  --healing-mist: #F0F8FF;
+}
+
+/* 磨砂毛玻璃效果 */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 治愈系渐变背景 */
+.gradient-healing {
+  background: linear-gradient(135deg, 
+    var(--healing-mint) 0%, 
+    var(--healing-lavender) 35%, 
+    var(--healing-sky) 70%, 
+    var(--healing-peach) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.gradient-healing-soft {
+  background: linear-gradient(45deg, 
+    rgba(184, 230, 209, 0.8) 0%, 
+    rgba(230, 230, 250, 0.8) 50%, 
+    rgba(135, 206, 235, 0.8) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* 动画效果 */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes healingGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(184, 230, 209, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(184, 230, 209, 0.6); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes healingGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(184, 230, 209, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(184, 230, 209, 0.6); }
+}
+
+@keyframes breathing {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* 个人资料页面特殊效果 */
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-glow {
+  animation: healingGlow 3s ease-in-out infinite;
+}
+
+.stat-card {
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 按钮动画效果 */
+.btn-healing-enhanced {
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-healing-enhanced:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-healing-enhanced:active {
+  transform: translateY(0);
+}
+
+/* 输入框增强效果 */
+.input-healing-enhanced {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* 文字阴影工具类 */
+.text-shadow-light {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.text-shadow-medium {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-strong {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.input-healing-enhanced:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  transform: translateY(-1px);
+}
+
+/* 头像上传特效 */
+.avatar-upload-container {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.avatar-upload-container:hover {
+  transform: scale(1.05);
+}
+
+.avatar-upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.avatar-upload-container:hover .avatar-upload-overlay {
+  opacity: 1;
+}
+
+.avatar-camera-icon {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.avatar-camera-icon:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+/* 预设头像选择器 */
+.avatar-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.avatar-preset-item {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-preset-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-preset-item.selected {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.avatar-preset-emoji {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@keyframes breathing {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* 密码强度指示器 */
+.password-strength-weak {
+  background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+}
+
+.password-strength-medium {
+  background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+.password-strength-strong {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+}
+
+/* 表单验证状态 */
+.input-valid {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+.input-invalid {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* 密码要求提示 */
+.password-requirements {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(184, 230, 209, 0.3);
+}
+
+.password-requirement-item {
+  transition: all 0.3s ease;
+}
+
+.password-requirement-item.met {
+  color: #10b981;
+}
+
+.password-requirement-item.not-met {
+  color: #6b7280;
+}
+
+/* 治愈系按钮样式 */
+.btn-healing {
+  @apply px-6 py-3 rounded-2xl font-medium transition-all duration-300 ease-out;
+  @apply hover:scale-105 hover:shadow-lg;
+  background: linear-gradient(135deg, var(--healing-mint), var(--healing-sky));
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-healing:hover {
+  background: linear-gradient(135deg, var(--healing-sky), var(--healing-mint));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 治愈系卡片 */
+.card-healing {
+  @apply rounded-3xl p-6 transition-all duration-300;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+}
+
+.card-healing:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
+}
+
+/* 治愈系浮动卡片 */
+.card-float {
+  @apply rounded-2xl p-4 transition-all duration-300;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: float 6s ease-in-out infinite;
+}
+
+.card-float:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(31, 38, 135, 0.2);
+}
+
+/* 治愈系输入框 */
+.input-healing {
+  @apply px-4 py-3 rounded-2xl border-2 transition-all duration-300;
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(184, 230, 209, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.input-healing:focus {
+  outline: none;
+  border-color: var(--healing-mint);
+  box-shadow: 0 0 0 3px rgba(184, 230, 209, 0.2);
+}
+
+/* 页面切换动画 */
+.page-transition {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 弹窗动画 */
+.modal-enter {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* 治愈系文字样式 */
+.text-healing {
+  @apply font-medium text-gray-700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* 文字阴影工具类 */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.text-shadow-xl {
+  text-shadow: 0 8px 12px rgba(0, 0, 0, 0.25), 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.text-healing-title {
+  @apply font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent;
+}
+
+/* 治愈系发光效果 */
+.glow-healing {
+  animation: healingGlow 3s ease-in-out infinite;
+}
+
+/* 治愈系呼吸效果 */
+.breathing-effect {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+/* 治愈系按钮发光 */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* 治愈系渐变背景类 */
+.bg-healing-mint {
+  background: linear-gradient(135deg, var(--healing-mint), var(--healing-sage));
+}
+
+.bg-healing-lavender {
+  background: linear-gradient(135deg, var(--healing-lavender), var(--healing-mist));
+}
+
+.bg-healing-sky {
+  background: linear-gradient(135deg, var(--healing-sky), var(--healing-mint));
+}
+
+.bg-healing-peach {
+  background: linear-gradient(135deg, var(--healing-peach), var(--healing-rose));
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  .card-healing {
+    @apply p-4 rounded-2xl;
+  }
+  
+  .btn-healing {
+    @apply px-4 py-2 rounded-xl;
+  }
+}
+
+/* 治愈系粒子效果 */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(184, 230, 209, 0.6);
+  border-radius: 50%;
+  animation: particleFloat 10s infinite linear;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+/* 治愈系波纹效果 */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* 治愈系加载动画 */
+.loading-healing {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(184, 230, 209, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--healing-mint);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 治愈系成功动画 */
+.success-healing {
+  animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* 降低动画以避免卡顿 */
+:root[data-reduced-motion="true"] .gradient-healing { animation: none !important; }
+:root[data-reduced-motion="true"] .gradient-healing-soft { animation: none !important; }
+:root[data-reduced-motion="true"] .card-float { animation: none !important; }
+:root[data-reduced-motion="true"] .breathing-effect { animation: none !important; }
+:root[data-reduced-motion="true"] .btn-glow::before { animation: none !important; }
+:root[data-reduced-motion="true"] .loading-healing { animation: none !important; }
+:root[data-reduced-motion="true"] .glass, :root[data-reduced-motion="true"] .glass-light, :root[data-reduced-motion="true"] .glass-dark { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none !important; }
+:root[data-reduced-motion="true"] .card-healing, :root[data-reduced-motion="true"] .card-float { box-shadow: none !important; }
+:root[data-reduced-motion="true"] .text-shadow-light, :root[data-reduced-motion="true"] .text-shadow-medium, :root[data-reduced-motion="true"] .text-shadow-strong, :root[data-reduced-motion="true"] .text-shadow-lg, :root[data-reduced-motion="true"] .text-shadow-xl { text-shadow: none !important; }
+:root[data-reduced-motion="true"] .drop-shadow-sm, :root[data-reduced-motion="true"] .drop-shadow-md, :root[data-reduced-motion="true"] .drop-shadow-lg, :root[data-reduced-motion="true"] .drop-shadow-2xl { filter: none !important; }
