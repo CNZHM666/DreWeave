@@ -47,6 +47,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           if (status === 200 && tips.length) return { tips, status }
         }
       }
+      const nativeEndpoints = ['https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/chat/completions', 'https://dashscope.aliyuncs.com/api/v1/services/aigc/chat/completions']
+      for (const ep of nativeEndpoints) {
+        for (const m of models) {
+          const body = { model: m, input: { messages: [{ role: 'system', content: sys }, { role: 'user', content: user }] }, parameters: { temperature: 0.7 } }
+          const resp = await fetch(ep, { method: 'POST', headers, body: JSON.stringify(body) })
+          const status = resp.status
+          let raw = ''; try { raw = await resp.text() } catch {}
+          let text = ''; try { const data = JSON.parse(raw); text = data?.output?.choices?.[0]?.message?.content || data?.choices?.[0]?.message?.content || '' } catch {}
+          let tips: string[] = []
+          if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>String(x)) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
+          console.log('[ai/suggestions:native]', { provider: which, status, length: raw.length, endpoint: ep, model: m })
+          if (status === 200 && tips.length) return { tips, status }
+        }
+      }
       return { tips: [], status: 400 }
     }
     let primary: 'dashscope'|'openrouter' = (provider === 'dashscope' && dashKey) ? 'dashscope' : (openKey ? 'openrouter' : 'dashscope')
