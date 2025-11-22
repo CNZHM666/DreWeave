@@ -17,28 +17,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     async function call(which: 'dashscope'|'openrouter') {
       const useDash = which === 'dashscope'
-      const url = useDash ? 'https://dashscope.aliyuncs.com/api/v1/services/aigc/chat/completions' : 'https://openrouter.ai/api/v1/chat/completions'
       const headers: Record<string,string> = useDash
         ? { 'Authorization': `Bearer ${dashKey}`, 'Content-Type': 'application/json', 'Accept': 'application/json' }
         : { 'Authorization': `Bearer ${openKey}`, 'Content-Type': 'application/json', 'Accept': 'application/json' }
-      const body = useDash
-        ? { model: 'qwen2.5-7b-instruct', input: { messages: [{ role: 'system', content: sys }, { role: 'user', content: user }] }, parameters: { temperature: 0.7 } }
-        : { model: 'qwen/qwen2.5-7b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: user }], temperature: 0.7 }
-      const resp = await fetch(url, { method: 'POST', headers, body: JSON.stringify(body) })
-      const status = resp.status
-      let raw = ''
-      try { raw = await resp.text() } catch {}
-      let text = ''
-      try {
-        const data = JSON.parse(raw)
-        text = useDash ? (data?.output?.choices?.[0]?.message?.content || data?.choices?.[0]?.message?.content || '') : (data?.choices?.[0]?.message?.content || '')
-      } catch {}
-      let tips: string[] = []
-      if (text) {
-        try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>String(x)) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) }
+      if (!useDash) {
+        const url = 'https://openrouter.ai/api/v1/chat/completions'
+        const body = { model: 'qwen/qwen2.5-7b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: user }], temperature: 0.7 }
+        const resp = await fetch(url, { method: 'POST', headers, body: JSON.stringify(body) })
+        const status = resp.status
+        let raw = ''; try { raw = await resp.text() } catch {}
+        let text = ''; try { const data = JSON.parse(raw); text = data?.choices?.[0]?.message?.content || '' } catch {}
+        let tips: string[] = []
+        if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>String(x)) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
+        console.log('[ai/suggestions]', { provider: which, status, length: raw.length })
+        return { tips, status }
       }
-      console.log('[ai/suggestions]', { provider: which, status, length: raw.length })
-      return { tips, status }
+      const endpoints = ['https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions', 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions']
+      const models = ['qwen-turbo-latest', 'qwen2.5-7b-instruct']
+      for (const ep of endpoints) {
+        for (const m of models) {
+          const body = { model: m, messages: [{ role: 'system', content: sys }, { role: 'user', content: user }], temperature: 0.7 }
+          const resp = await fetch(ep, { method: 'POST', headers, body: JSON.stringify(body) })
+          const status = resp.status
+          let raw = ''; try { raw = await resp.text() } catch {}
+          let text = ''; try { const data = JSON.parse(raw); text = data?.choices?.[0]?.message?.content || '' } catch {}
+          let tips: string[] = []
+          if (text) { try { const parsed = JSON.parse(text); if (Array.isArray(parsed)) tips = parsed.map(x=>String(x)) } catch { tips = String(text).split('\n').map(l=>l.replace(/^[-*\s]+/,'')).filter(Boolean) } }
+          console.log('[ai/suggestions]', { provider: which, status, length: raw.length, endpoint: ep, model: m })
+          if (status === 200 && tips.length) return { tips, status }
+        }
+      }
+      return { tips: [], status: 400 }
     }
     let primary: 'dashscope'|'openrouter' = (provider === 'dashscope' && dashKey) ? 'dashscope' : (openKey ? 'openrouter' : 'dashscope')
     let result = await call(primary)
